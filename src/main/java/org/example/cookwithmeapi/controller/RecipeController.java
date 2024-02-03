@@ -1,18 +1,20 @@
 package org.example.cookwithmeapi.controller;
 
 import org.example.cookwithmeapi.model.Recipe;
+import org.example.cookwithmeapi.model.dto.recipe.RecipeRequest;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface RecipeController {
-    public List<Recipe> get();
+    public ResponseEntity<List<Recipe>> get();
 
-    public Recipe getById(UUID id);
+    public ResponseEntity<Recipe> getById(UUID id);
 
-    public Recipe create(Recipe recipe);
+    public ResponseEntity<Recipe> create(RecipeRequest request);
 
-    public Recipe update(UUID id, Recipe recipe);
+    public ResponseEntity<Recipe> update(UUID id, RecipeRequest request);
 
-    public void delete(UUID id);
+    public ResponseEntity<?> delete(UUID id);
 }
