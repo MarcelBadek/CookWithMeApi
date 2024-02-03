@@ -1,5 +1,6 @@
 package org.example.cookwithmeapi.service;
 
+import org.example.cookwithmeapi.exceptions.RecipeNotFoundException;
 import org.example.cookwithmeapi.model.Recipe;
 
 import java.util.List;
