@@ -1,6 +1,6 @@
 package org.example.cookwithmeapi.exceptions.handler;
 
-import org.example.cookwithmeapi.exceptions.RecipeNotFoundException;
+import org.example.cookwithmeapi.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler({RecipeNotFoundException.class})
-    public ResponseEntity<?> handleRecipeNotFoundException(RecipeNotFoundException exception) {
+    @ExceptionHandler({NotFoundException.class})
+    public ResponseEntity<?> handleNotFoundException(NotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 

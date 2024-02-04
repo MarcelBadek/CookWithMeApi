@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.UUID;
 
 public interface RecipeController {
-    public ResponseEntity<List<Recipe>> get();
+    ResponseEntity<List<Recipe>> get();
 
-    public ResponseEntity<Recipe> getById(UUID id);
+    ResponseEntity<Recipe> getById(UUID id);
 
-    public ResponseEntity<Recipe> create(RecipeRequest request);
+    ResponseEntity<Recipe> create(RecipeRequest request);
 
-    public ResponseEntity<Recipe> update(UUID id, RecipeRequest request);
+    ResponseEntity<Recipe> update(UUID id, RecipeRequest request);
 
-    public ResponseEntity<?> delete(UUID id);
+    ResponseEntity<?> delete(UUID id);
 }

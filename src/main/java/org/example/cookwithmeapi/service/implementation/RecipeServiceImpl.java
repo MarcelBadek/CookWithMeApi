@@ -1,7 +1,8 @@
 package org.example.cookwithmeapi.service.implementation;
 
 import lombok.AllArgsConstructor;
-import org.example.cookwithmeapi.exceptions.RecipeNotFoundException;
+import org.example.cookwithmeapi.exceptions.NotFoundException;
+import org.example.cookwithmeapi.exceptions.message.RecipeExceptionMessage;
 import org.example.cookwithmeapi.model.Recipe;
 import org.example.cookwithmeapi.repository.implementation.RecipeRepositoryImpl;
 import org.example.cookwithmeapi.service.RecipeService;
@@ -24,7 +25,9 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe getById(UUID id) {
         Optional<Recipe> result = repository.findById(id);
 
-        return result.orElseThrow(RecipeNotFoundException::new);
+        if (result.isEmpty()) throw new NotFoundException(RecipeExceptionMessage.NOT_FOUND);
+
+        return result.get();
     }
 
     @Override
@@ -36,7 +39,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe update(UUID id, Recipe recipe) {
         Optional<Recipe> result = repository.findById(id);
 
-        if (result.isEmpty()) throw new RecipeNotFoundException();
+        if (result.isEmpty()) throw new NotFoundException(RecipeExceptionMessage.NOT_FOUND);
 
         Recipe resultRecipe = result.get();
 
