@@ -17,6 +17,7 @@ public abstract class Account {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String login;
+    private String email;
     private String firstName;
     private String lastName;
     private String password;
