@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.UUID;
 
@@ -12,13 +13,20 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Account {
+public abstract class Account implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String login;
+
+    @Column(unique = true)
+    private String username;
+
+    @Column(unique = true)
     private String email;
+
     private String firstName;
+
     private String lastName;
+
     private String password;
 }
