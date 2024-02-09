@@ -46,7 +46,7 @@ public class RecipeControllerImpl implements RecipeController {
     }
 
     @Override
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

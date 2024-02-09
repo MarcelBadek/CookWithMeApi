@@ -29,7 +29,7 @@ public class CategoryControllerImpl implements CategoryController {
     }
 
     @Override
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Category> getById(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(service.getById(id));
     }
@@ -41,13 +41,13 @@ public class CategoryControllerImpl implements CategoryController {
     }
 
     @Override
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Category> update(@PathVariable UUID id, @Valid @RequestBody CategoryRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, CategoryMapper.toCategory(request)));
     }
 
     @Override
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
