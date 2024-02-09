@@ -5,7 +5,9 @@ import org.example.cookwithmeapi.exceptions.NotFoundException;
 import org.example.cookwithmeapi.exceptions.message.AccountExceptionMessage;
 import org.example.cookwithmeapi.model.account.Client;
 import org.example.cookwithmeapi.repository.ClientRepository;
+import org.example.cookwithmeapi.service.AccountService;
 import org.example.cookwithmeapi.service.ClientService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,9 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
-    private ClientRepository repository;
+    private final ClientRepository repository;
+    private final PasswordEncoder passwordEncoder;
+    private final AccountService accountService;
 
     @Override
     public List<Client> get() {
@@ -51,6 +55,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client create(Client client) {
+        accountService.checkDataUniqueness(client);
+
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
         return repository.saveAndFlush(client);
     }
 
