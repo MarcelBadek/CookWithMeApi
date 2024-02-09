@@ -29,14 +29,4 @@ public class RecipeRequest {
 
     @NotEmpty(message = "Recipe must have category")
     private List<Category> categories;
-
-    public static Recipe toRecipe(RecipeRequest request) {
-        return new Recipe(null,
-                request.getName(),
-                request.getPreparationTime(),
-                request.getIngredients(),
-                request.getDescription(),
-                request.getCategories(),
-                null);
-    }
 }

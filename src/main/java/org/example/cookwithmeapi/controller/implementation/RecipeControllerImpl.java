@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.example.cookwithmeapi.controller.RecipeController;
 import org.example.cookwithmeapi.model.Recipe;
 import org.example.cookwithmeapi.model.dto.recipe.RecipeRequest;
+import org.example.cookwithmeapi.model.mapper.RecipeMapper;
 import org.example.cookwithmeapi.service.RecipeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,18 +36,18 @@ public class RecipeControllerImpl implements RecipeController {
     @Override
     @PostMapping
     public ResponseEntity<Recipe> create(@Valid @RequestBody RecipeRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(RecipeRequest.toRecipe(request)));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(RecipeMapper.toRecipe(request)));
     }
 
     @Override
-    @PutMapping
-    public ResponseEntity<Recipe> update(@RequestBody UUID id,@Valid @RequestBody RecipeRequest request) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, RecipeRequest.toRecipe(request)));
+    @PutMapping("/{id}")
+    public ResponseEntity<Recipe> update(@PathVariable UUID id,@Valid @RequestBody RecipeRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, RecipeMapper.toRecipe(request)));
     }
 
     @Override
-    @DeleteMapping
-    public ResponseEntity<?> delete(@RequestBody UUID id) {
+    @DeleteMapping("{/id}")
+    public ResponseEntity<?> delete(@PathVariable UUID id) {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

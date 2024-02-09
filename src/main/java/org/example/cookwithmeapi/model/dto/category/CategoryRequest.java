@@ -12,8 +12,4 @@ import org.example.cookwithmeapi.model.Category;
 public class CategoryRequest {
     @NotBlank(message = "Name is mandatory")
     private String name;
-
-    public static Category toCategory(CategoryRequest request) {
-        return new Category(null, request.getName());
-    }
 }
