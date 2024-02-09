@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.cookwithmeapi.controller.CategoryController;
 import org.example.cookwithmeapi.model.Category;
-import org.example.cookwithmeapi.model.dto.category.CategoryRequest;
-import org.example.cookwithmeapi.model.mapper.CategoryMapper;
+import org.example.cookwithmeapi.dto.category.CategoryRequest;
+import org.example.cookwithmeapi.mapper.CategoryMapper;
 import org.example.cookwithmeapi.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/category")
 public class CategoryControllerImpl implements CategoryController {
-    private CategoryService service;
+    private final CategoryService service;
 
     @Override
     @GetMapping()

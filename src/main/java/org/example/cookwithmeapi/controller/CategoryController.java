@@ -1,7 +1,7 @@
 package org.example.cookwithmeapi.controller;
 
 import org.example.cookwithmeapi.model.Category;
-import org.example.cookwithmeapi.model.dto.category.CategoryRequest;
+import org.example.cookwithmeapi.dto.category.CategoryRequest;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

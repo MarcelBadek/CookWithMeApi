@@ -19,8 +19,9 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class RecipeServiceImpl implements RecipeService {
-    private RecipeRepository repository;
-    private ClientRepository clientRepository;
+    private final RecipeRepository repository;
+    private final ClientRepository clientRepository;
+
     @Override
     public List<Recipe> get() {
         return repository.findAll();

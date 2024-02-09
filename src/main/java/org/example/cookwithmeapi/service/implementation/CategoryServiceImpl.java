@@ -14,7 +14,7 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-    private CategoryRepository repository;
+    private final CategoryRepository repository;
 
     @Override
     public List<Category> get() {

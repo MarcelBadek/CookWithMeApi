@@ -1,10 +1,9 @@
-package org.example.cookwithmeapi.model.dto.category;
+package org.example.cookwithmeapi.dto.category;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.cookwithmeapi.model.Category;
 
 @Data
 @NoArgsConstructor

@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.cookwithmeapi.controller.RecipeController;
 import org.example.cookwithmeapi.model.Recipe;
-import org.example.cookwithmeapi.model.dto.recipe.RecipeRequest;
-import org.example.cookwithmeapi.model.mapper.RecipeMapper;
+import org.example.cookwithmeapi.dto.recipe.RecipeRequest;
+import org.example.cookwithmeapi.mapper.RecipeMapper;
 import org.example.cookwithmeapi.service.RecipeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,8 @@ import java.util.UUID;
 @RestController()
 @RequestMapping("/recipe")
 public class RecipeControllerImpl implements RecipeController {
-    private RecipeService service;
+    private final RecipeService service;
+
     @Override
     @GetMapping()
     public ResponseEntity<List<Recipe>> get() {

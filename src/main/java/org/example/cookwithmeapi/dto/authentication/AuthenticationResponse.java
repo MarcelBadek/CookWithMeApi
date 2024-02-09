@@ -1,4 +1,4 @@
-package org.example.cookwithmeapi.model.dto.authentication;
+package org.example.cookwithmeapi.dto.authentication;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
