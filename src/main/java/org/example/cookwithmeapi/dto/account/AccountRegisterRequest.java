@@ -1,4 +1,4 @@
-package org.example.cookwithmeapi.model.dto.authentication;
+package org.example.cookwithmeapi.dto.account;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,7 +14,8 @@ public class AccountRegisterRequest {
     @NotBlank(message = "Username is mandatory")
     private String username;
 
-    @Email(message = "Email is mandatory")
+    @NotBlank(message = "Email is mandatory")
+    @Email
     private String email;
 
     @NotBlank(message = "First name is mandatory")
