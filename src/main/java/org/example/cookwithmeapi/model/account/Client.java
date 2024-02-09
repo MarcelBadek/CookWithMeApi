@@ -2,13 +2,19 @@ package org.example.cookwithmeapi.model.account;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Transient;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
+@Data
+@SuperBuilder
+@AllArgsConstructor
 public class Client extends Account {
     @Transient
     @Override
