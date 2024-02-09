@@ -24,11 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getById(UUID id) {
-        Optional<Category> result = repository.findById(id);
-
-        if (result.isEmpty()) throw new NotFoundException(CategoryExceptionMessage.NOT_FOUND);
-
-        return result.get();
+        return repository.findById(id).orElseThrow(() -> new NotFoundException(CategoryExceptionMessage.NOT_FOUND));
     }
 
     @Override
@@ -38,15 +34,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category update(UUID id, Category category) {
-        Optional<Category> result = repository.findById(id);
+        Category result = repository.findById(id).orElseThrow(() -> new NotFoundException(CategoryExceptionMessage.NOT_FOUND));
 
-        if (result.isEmpty()) throw new NotFoundException(CategoryExceptionMessage.NOT_FOUND);
+        result.setName(category.getName());
 
-        Category resultCategory = result.get();
-
-        resultCategory.setName(category.getName());
-
-        return repository.saveAndFlush(resultCategory);
+        return repository.saveAndFlush(result);
     }
 
     @Override

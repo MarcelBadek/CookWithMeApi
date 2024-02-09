@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import io.jsonwebtoken.Claims;
-import org.example.cookwithmeapi.model.account.Account;
 
 
 public interface JwtService {
