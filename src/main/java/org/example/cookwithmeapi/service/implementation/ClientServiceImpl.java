@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.cookwithmeapi.exceptions.NotFoundException;
 import org.example.cookwithmeapi.exceptions.message.AccountExceptionMessage;
 import org.example.cookwithmeapi.model.account.Client;
-import org.example.cookwithmeapi.repository.implementation.ClientRepositoryImpl;
+import org.example.cookwithmeapi.repository.ClientRepository;
 import org.example.cookwithmeapi.service.ClientService;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
-    ClientRepositoryImpl repository;
+    private ClientRepository repository;
 
     @Override
     public List<Client> get() {
@@ -56,15 +56,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client update(UUID id, Client client) {
-        Optional<Client> result = repository.findById(id);
+        Client result = repository.findById(id).orElseThrow(() -> new NotFoundException(AccountExceptionMessage.NOT_FOUND_BY_ID));
 
-        if (result.isEmpty()) throw new NotFoundException(AccountExceptionMessage.NOT_FOUND_BY_ID);
+        result.setFirstName(client.getFirstName());
+        result.setLastName(client.getLastName());
 
-        Client resultClient = result.get();
-
-        resultClient.setFirstName(client.getFirstName());
-        resultClient.setLastName(client.getLastName());
-
-        return repository.saveAndFlush(resultClient);
+        return repository.saveAndFlush(result);
     }
 }

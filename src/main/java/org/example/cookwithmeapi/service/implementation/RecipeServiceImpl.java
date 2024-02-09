@@ -1,29 +1,26 @@
 package org.example.cookwithmeapi.service.implementation;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.example.cookwithmeapi.exceptions.NotFoundException;
 import org.example.cookwithmeapi.exceptions.message.AccountExceptionMessage;
 import org.example.cookwithmeapi.exceptions.message.RecipeExceptionMessage;
 import org.example.cookwithmeapi.model.Recipe;
 import org.example.cookwithmeapi.model.account.Client;
-import org.example.cookwithmeapi.repository.implementation.ClientRepositoryImpl;
-import org.example.cookwithmeapi.repository.implementation.RecipeRepositoryImpl;
+import org.example.cookwithmeapi.repository.ClientRepository;
+import org.example.cookwithmeapi.repository.RecipeRepository;
 import org.example.cookwithmeapi.service.RecipeService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-@Slf4j
 public class RecipeServiceImpl implements RecipeService {
-    private RecipeRepositoryImpl repository;
-    private ClientRepositoryImpl clientRepository;
+    private RecipeRepository repository;
+    private ClientRepository clientRepository;
     @Override
     public List<Recipe> get() {
         return repository.findAll();

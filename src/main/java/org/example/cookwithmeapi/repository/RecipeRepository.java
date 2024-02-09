@@ -1,4 +1,4 @@
-package org.example.cookwithmeapi.repository.implementation;
+package org.example.cookwithmeapi.repository;
 
 import org.example.cookwithmeapi.model.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface RecipeRepositoryImpl extends JpaRepository<Recipe, UUID> {
+public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
 }

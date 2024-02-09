@@ -4,18 +4,17 @@ import lombok.AllArgsConstructor;
 import org.example.cookwithmeapi.exceptions.NotFoundException;
 import org.example.cookwithmeapi.exceptions.message.CategoryExceptionMessage;
 import org.example.cookwithmeapi.model.Category;
-import org.example.cookwithmeapi.repository.implementation.CategoryRepositoryImpl;
+import org.example.cookwithmeapi.repository.CategoryRepository;
 import org.example.cookwithmeapi.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-    private CategoryRepositoryImpl repository;
+    private CategoryRepository repository;
 
     @Override
     public List<Category> get() {

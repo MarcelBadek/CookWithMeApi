@@ -7,7 +7,7 @@ import org.example.cookwithmeapi.model.account.Client;
 import org.example.cookwithmeapi.model.dto.authentication.AccountRegisterRequest;
 import org.example.cookwithmeapi.model.dto.authentication.AuthenticationResponse;
 import org.example.cookwithmeapi.model.dto.authentication.LoginRequest;
-import org.example.cookwithmeapi.repository.implementation.ClientRepositoryImpl;
+import org.example.cookwithmeapi.repository.ClientRepository;
 import org.example.cookwithmeapi.service.AuthenticationService;
 import org.example.cookwithmeapi.service.JwtService;
 import org.example.cookwithmeapi.service.UserService;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private final ClientRepositoryImpl clientRepository;
+    private final ClientRepository clientRepository;
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
