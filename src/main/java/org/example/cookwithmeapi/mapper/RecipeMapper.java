@@ -1,7 +1,7 @@
-package org.example.cookwithmeapi.model.mapper;
+package org.example.cookwithmeapi.mapper;
 
 import org.example.cookwithmeapi.model.Recipe;
-import org.example.cookwithmeapi.model.dto.recipe.RecipeRequest;
+import org.example.cookwithmeapi.dto.recipe.RecipeRequest;
 
 public class RecipeMapper {
     public static Recipe toRecipe(RecipeRequest request) {

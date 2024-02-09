@@ -1,7 +1,7 @@
-package org.example.cookwithmeapi.model.mapper;
+package org.example.cookwithmeapi.mapper;
 
 import org.example.cookwithmeapi.model.Category;
-import org.example.cookwithmeapi.model.dto.category.CategoryRequest;
+import org.example.cookwithmeapi.dto.category.CategoryRequest;
 
 public class CategoryMapper {
     public static Category toCategory(CategoryRequest request) {
