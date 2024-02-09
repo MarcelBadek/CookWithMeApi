@@ -3,7 +3,7 @@ package org.example.cookwithmeapi.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.example.cookwithmeapi.filter.JwtAuthenticationFilter;
-import org.example.cookwithmeapi.service.UserService;
+import org.example.cookwithmeapi.service.AccountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,12 +26,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final PasswordEncoder passwordEncoder;
-    private final UserService userService;
+    private final AccountService accountService;
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userService.userDetailsService());
+        authProvider.setUserDetailsService(accountService.userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
     }

@@ -1,8 +1,8 @@
 package org.example.cookwithmeapi.service;
 
-import org.example.cookwithmeapi.model.dto.authentication.AccountRegisterRequest;
-import org.example.cookwithmeapi.model.dto.authentication.AuthenticationResponse;
-import org.example.cookwithmeapi.model.dto.authentication.LoginRequest;
+import org.example.cookwithmeapi.dto.account.AccountRegisterRequest;
+import org.example.cookwithmeapi.dto.authentication.AuthenticationResponse;
+import org.example.cookwithmeapi.dto.authentication.LoginRequest;
 
 public interface AuthenticationService {
     AuthenticationResponse login(LoginRequest request);
