@@ -1,5 +1,6 @@
 package org.example.cookwithmeapi.exceptions.handler;
 
+import org.example.cookwithmeapi.exceptions.DataUniquenessException;
 import org.example.cookwithmeapi.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +24,10 @@ public class GlobalExceptionHandler {
         });
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(builder);
+    }
+
+    @ExceptionHandler({DataUniquenessException.class})
+    public ResponseEntity<?> handleInvalidDataException(DataUniquenessException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
     }
 }
