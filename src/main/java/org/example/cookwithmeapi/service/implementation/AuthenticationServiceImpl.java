@@ -34,22 +34,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String jwt = jwtService.generateToken(account);
         return new AuthenticationResponse(jwt);
     }
-
-    @Override
-    public AuthenticationResponse register(AccountRegisterRequest request) {
-        Client client = Client
-                .builder()
-                .username(request.getUsername())
-                .email(request.getEmail())
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .build();
-
-        client = clientRepository.saveAndFlush(client);
-        String token = jwtService.generateToken(client);
-        return new AuthenticationResponse(token);
-    }
-
-
 }

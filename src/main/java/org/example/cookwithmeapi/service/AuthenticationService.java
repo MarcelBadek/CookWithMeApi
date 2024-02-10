@@ -6,5 +6,4 @@ import org.example.cookwithmeapi.dto.authentication.LoginRequest;
 
 public interface AuthenticationService {
     AuthenticationResponse login(LoginRequest request);
-    AuthenticationResponse register(AccountRegisterRequest request);
 }
