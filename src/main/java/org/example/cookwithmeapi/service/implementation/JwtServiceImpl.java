@@ -33,7 +33,14 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        Account account = (Account) userDetails;
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", account.getId().toString());
+        claims.put("email", account.getEmail());
+        claims.put("firstName", account.getFirstName());
+        claims.put("lastName", account.getLastName());
+
+        return generateToken(claims, userDetails);
     }
 
     @Override
