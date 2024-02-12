@@ -77,13 +77,7 @@ public class AccountServiceImpl implements AccountService {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                Optional<Client> client = clientRepository.findByUsername(username);
-                if (client.isPresent()) return client.get();
-
-                Optional<Administrator> administrator = administratorRepository.findByUsername(username);
-                if (administrator.isPresent()) return administrator.get();
-
-                throw new NotFoundException(AccountExceptionMessage.NOT_FOUND_BY_USERNAME);
+                return getAccountByUsername(username);
             }
         };
     }
