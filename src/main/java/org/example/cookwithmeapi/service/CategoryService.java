@@ -15,4 +15,6 @@ public interface CategoryService {
     Category update(UUID id, Category category);
 
     void delete(UUID id);
+
+    boolean checkCategoriesExisting(List<Category> categories);
 }
