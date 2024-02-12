@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
     }
 
-    @ExceptionHandler({NotFoundException.class})
+    @ExceptionHandler({NoPermissionException.class})
     public ResponseEntity<String> handleNoPermissionException(NoPermissionException exception) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exception.getMessage());
     }
