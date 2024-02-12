@@ -19,7 +19,7 @@ public class Client extends Account {
     @Transient
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("CLIENT"));
+        return List.of(new SimpleGrantedAuthority("ROLE_CLIENT"));
     }
 
     @Override
