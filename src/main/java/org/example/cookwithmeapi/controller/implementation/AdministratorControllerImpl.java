@@ -10,6 +10,7 @@ import org.example.cookwithmeapi.model.account.Administrator;
 import org.example.cookwithmeapi.service.AdministratorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
 @Controller
 @AllArgsConstructor
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin")
 public class AdministratorControllerImpl implements AdministratorController {
     private final AdministratorService service;
