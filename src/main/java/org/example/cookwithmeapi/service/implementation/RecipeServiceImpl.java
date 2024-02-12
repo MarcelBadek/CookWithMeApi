@@ -69,7 +69,13 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(UUID id, Client requestedBy) {
+        Recipe result = repository.findById(id).orElseThrow(() -> new NotFoundException(RecipeExceptionMessage.NOT_FOUND));
+
+        if (result.getAuthor().getId() != requestedBy.getId()) {
+            throw new NoPermissionException(AccountExceptionMessage.NO_PERMISSION);
+        }
+
         repository.deleteById(id);
     }
 }
