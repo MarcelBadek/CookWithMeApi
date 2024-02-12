@@ -3,6 +3,7 @@ package org.example.cookwithmeapi.controller.implementation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.cookwithmeapi.controller.CategoryController;
+import org.example.cookwithmeapi.dto.category.CategoryResponse;
 import org.example.cookwithmeapi.model.Category;
 import org.example.cookwithmeapi.dto.category.CategoryRequest;
 import org.example.cookwithmeapi.mapper.CategoryMapper;
@@ -25,28 +26,36 @@ public class CategoryControllerImpl implements CategoryController {
 
     @Override
     @GetMapping()
-    public ResponseEntity<List<Category>> get() {
-        return ResponseEntity.status(HttpStatus.OK).body(service.get());
+    public ResponseEntity<List<CategoryResponse>> get() {
+        List<Category> response = service.get();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response.stream().map(CategoryMapper::toResponse).toList());
     }
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getById(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getById(id));
+    public ResponseEntity<CategoryResponse> getById(@PathVariable UUID id) {
+        Category response = service.getById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(CategoryMapper.toResponse(response));
     }
 
     @Override
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Category> create(@Valid @RequestBody CategoryRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(CategoryMapper.toCategory(request)));
+    public ResponseEntity<CategoryResponse> create(@Valid @RequestBody CategoryRequest request) {
+        Category response = service.create(CategoryMapper.toCategory(request));
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(CategoryMapper.toResponse(response));
     }
 
     @Override
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Category> update(@PathVariable UUID id, @Valid @RequestBody CategoryRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.update(id, CategoryMapper.toCategory(request)));
+    public ResponseEntity<CategoryResponse> update(@PathVariable UUID id, @Valid @RequestBody CategoryRequest request) {
+        Category response = service.update(id, CategoryMapper.toCategory(request));
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(CategoryMapper.toResponse(response));
     }
 
     @Override

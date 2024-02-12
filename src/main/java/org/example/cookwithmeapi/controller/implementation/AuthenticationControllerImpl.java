@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.cookwithmeapi.controller.AuthenticationController;
 import org.example.cookwithmeapi.dto.account.AccountRegisterRequest;
+import org.example.cookwithmeapi.dto.account.AccountResponse;
 import org.example.cookwithmeapi.dto.authentication.AuthenticationResponse;
 import org.example.cookwithmeapi.dto.authentication.LoginRequest;
 import org.example.cookwithmeapi.mapper.AccountMapper;
@@ -24,12 +25,16 @@ public class AuthenticationControllerImpl implements AuthenticationController {
     @PostMapping("/login")
     @Override
     public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.login(loginRequest));
+        AuthenticationResponse response = service.login(loginRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PostMapping("/register")
     @Override
-    public ResponseEntity<Client> register(@Valid @RequestBody AccountRegisterRequest registerRequest) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.create(AccountMapper.toClient(registerRequest)));
+    public ResponseEntity<AccountResponse> register(@Valid @RequestBody AccountRegisterRequest registerRequest) {
+        Client response = clientService.create(AccountMapper.toClient(registerRequest));
+        
+        return ResponseEntity.status(HttpStatus.OK).body(AccountMapper.toResponse(response));
     }
 }

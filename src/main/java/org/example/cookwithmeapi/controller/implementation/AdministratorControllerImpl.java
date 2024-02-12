@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.example.cookwithmeapi.controller.AdministratorController;
 import org.example.cookwithmeapi.dto.account.AccountRegisterRequest;
+import org.example.cookwithmeapi.dto.account.AccountResponse;
 import org.example.cookwithmeapi.dto.account.AccountUpdateRequest;
 import org.example.cookwithmeapi.mapper.AccountMapper;
 import org.example.cookwithmeapi.model.account.Administrator;
@@ -27,37 +28,49 @@ public class AdministratorControllerImpl implements AdministratorController {
 
     @GetMapping
     @Override
-    public ResponseEntity<List<Administrator>> get() {
-        return ResponseEntity.status(HttpStatus.OK).body(service.get());
+    public ResponseEntity<List<AccountResponse>> get() {
+        List<Administrator> response = service.get();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response.stream().map(AccountMapper::toResponse).toList());
     }
 
     @GetMapping("/{id}")
     @Override
-    public ResponseEntity<Administrator> getById(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getById(id));
+    public ResponseEntity<AccountResponse> getById(@PathVariable UUID id) {
+        Administrator response = service.getById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(AccountMapper.toResponse(response));
     }
 
     @GetMapping("/username/{username}")
     @Override
-    public ResponseEntity<Administrator> getByUsername(@PathVariable String username) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getByUsername(username));
+    public ResponseEntity<AccountResponse> getByUsername(@PathVariable String username) {
+        Administrator response = service.getByUsername(username);
+
+        return ResponseEntity.status(HttpStatus.OK).body(AccountMapper.toResponse(response));
     }
 
     @GetMapping("/email/{email}")
     @Override
-    public ResponseEntity<Administrator> getByEmail(@PathVariable String email) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getByEmail(email));
+    public ResponseEntity<AccountResponse> getByEmail(@PathVariable String email) {
+        Administrator response = service.getByEmail(email);
+
+        return ResponseEntity.status(HttpStatus.OK).body(AccountMapper.toResponse(response));
     }
 
     @PostMapping
     @Override
-    public ResponseEntity<Administrator> create(@Valid @RequestBody AccountRegisterRequest request) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.create(AccountMapper.toAdministrator(request)));
+    public ResponseEntity<AccountResponse> create(@Valid @RequestBody AccountRegisterRequest request) {
+        Administrator response = service.create(AccountMapper.toAdministrator(request));
+
+        return ResponseEntity.status(HttpStatus.OK).body(AccountMapper.toResponse(response));
     }
 
     @PutMapping("/{id}")
     @Override
-    public ResponseEntity<Administrator> update(@PathVariable UUID id, @Valid @RequestBody AccountUpdateRequest request) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.create(AccountMapper.toAdministrator(request)));
+    public ResponseEntity<AccountResponse> update(@PathVariable UUID id, @Valid @RequestBody AccountUpdateRequest request) {
+        Administrator response = service.update(id, AccountMapper.toAdministrator(request));
+
+        return ResponseEntity.status(HttpStatus.OK).body(AccountMapper.toResponse(response));
     }
 }
