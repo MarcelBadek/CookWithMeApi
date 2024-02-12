@@ -7,4 +7,5 @@ public class AccountExceptionMessage {
     public static String NOT_FOUND_CREATING_RECIPE = "Occurred problem with account";
     public static String USERNAME_ALREADY_TAKEN = "User with given username already exists";
     public static String EMAIL_ALREADY_TAKEN = "User with given email already exists";
+    public static String NO_PERMISSION = "You do not have permission to perform this action";
 }
