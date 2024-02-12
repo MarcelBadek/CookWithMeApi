@@ -15,5 +15,5 @@ public interface RecipeService {
 
     Recipe update(UUID id, Recipe recipe, Client requestedBy);
 
-    void delete(UUID id);
+    void delete(UUID id, Client requestedBy);
 }

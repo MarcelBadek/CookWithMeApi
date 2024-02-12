@@ -64,7 +64,11 @@ public class RecipeControllerImpl implements RecipeController {
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        service.delete(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Client client = clientService.getByUsername(auth.getName());
+
+        service.delete(id, client);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
