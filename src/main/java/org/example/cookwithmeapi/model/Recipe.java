@@ -2,6 +2,7 @@ package org.example.cookwithmeapi.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.cookwithmeapi.model.account.Client;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,6 +26,7 @@ public class Recipe {
 
     private String ingredients;
 
+    @Column(length = 4096)
     private String description;
 
     @ManyToMany
