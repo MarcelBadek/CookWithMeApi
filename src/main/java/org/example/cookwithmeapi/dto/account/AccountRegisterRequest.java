@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @NoArgsConstructor
@@ -12,18 +13,20 @@ import lombok.NoArgsConstructor;
 public class AccountRegisterRequest {
 
     @NotBlank(message = "Username is mandatory")
+    @Length(min = 3, message = "Username must be at least 3 characters")
     private String username;
 
     @NotBlank(message = "Email is mandatory")
     @Email
     private String email;
 
-    @NotBlank(message = "First name is mandatory")
+    @Length(min = 2, message = "First name must be at least 3 characters")
     private String firstName;
 
-    @NotBlank(message = "Last name is mandatory")
+    @Length(min = 2, message = "Last name must be at least 3 characters")
     private String lastName;
 
     @NotBlank(message = "Password is mandatory")
+    @Length(min = 6, message = "Password must be at least 6 characters")
     private String password;
 }
