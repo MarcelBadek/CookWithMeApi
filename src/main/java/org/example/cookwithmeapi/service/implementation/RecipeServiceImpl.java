@@ -37,6 +37,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public List<Recipe> getByAuthor(UUID id) {
+        return repository.findAllByAuthorId(id);
+    }
+
+    @Override
     public Recipe create(Recipe recipe, Client owner) {
         if (!categoryService.checkCategoriesExisting(recipe.getCategories())) {
             throw new NotFoundException(CategoryExceptionMessage.NOT_FOUND);

@@ -20,7 +20,7 @@ import java.util.UUID;
 @Controller
 @AllArgsConstructor
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryControllerImpl implements CategoryController {
     private final CategoryService service;
 

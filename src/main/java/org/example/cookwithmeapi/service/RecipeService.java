@@ -11,6 +11,8 @@ public interface RecipeService {
 
     Recipe getById(UUID id);
 
+    List<Recipe> getByAuthor(UUID id);
+
     Recipe create(Recipe recipe, Client owner);
 
     Recipe update(UUID id, Recipe recipe, Client requestedBy);

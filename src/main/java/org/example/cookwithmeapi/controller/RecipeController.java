@@ -13,6 +13,8 @@ public interface RecipeController {
 
     ResponseEntity<RecipeResponse> getById(UUID id);
 
+    ResponseEntity<List<RecipeResponse>> getByAuthor(UUID id);
+
     ResponseEntity<RecipeResponse> create(RecipeRequest request);
 
     ResponseEntity<RecipeResponse> update(UUID id, RecipeRequest request);

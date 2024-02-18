@@ -25,7 +25,7 @@ import java.util.UUID;
 @Controller
 @AllArgsConstructor
 @RestController()
-@RequestMapping("/recipe")
+@RequestMapping("/recipes")
 public class RecipeControllerImpl implements RecipeController {
     private final RecipeService service;
     private final ClientService clientService;
@@ -45,6 +45,15 @@ public class RecipeControllerImpl implements RecipeController {
 
         return ResponseEntity.status(HttpStatus.OK).body(RecipeMapper.toResponse(response));
     }
+
+    @Override
+    @GetMapping("/author/{id}")
+    public ResponseEntity<List<RecipeResponse>> getByAuthor(@PathVariable UUID id) {
+        List<Recipe> response = service.getByAuthor(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response.stream().map(RecipeMapper::toResponse).toList());
+    }
+
 
     @Override
     @PostMapping
