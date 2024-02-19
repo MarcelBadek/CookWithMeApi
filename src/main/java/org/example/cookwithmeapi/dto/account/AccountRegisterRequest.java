@@ -20,10 +20,10 @@ public class AccountRegisterRequest {
     @Email
     private String email;
 
-    @Length(min = 2, message = "First name must be at least 3 characters")
+    @Length(min = 2, message = "First name must be at least 2 characters")
     private String firstName;
 
-    @Length(min = 2, message = "Last name must be at least 3 characters")
+    @Length(min = 2, message = "Last name must be at least 2 characters")
     private String lastName;
 
     @NotBlank(message = "Password is mandatory")

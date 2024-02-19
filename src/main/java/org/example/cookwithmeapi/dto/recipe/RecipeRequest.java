@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RecipeRequest {
     @NotBlank(message = "Name is mandatory")
-    @Length(min = 2, message = "Name must be at least 3 characters")
+    @Length(min = 2, message = "Name must be at least 2 characters")
     private String name;
 
     @NotBlank(message = "Preparation time is mandatory")
@@ -28,7 +28,7 @@ public class RecipeRequest {
     private String ingredients;
 
     @NotBlank(message = "Description is mandatory")
-    @Length(min = 50, message = "Name must be at least 3 characters")
+    @Length(min = 50, message = "Description must be at least 50 characters")
     private String description;
 
     @NotEmpty(message = "Recipe must have category")
