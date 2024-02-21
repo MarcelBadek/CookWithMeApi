@@ -26,7 +26,7 @@ public class Recipe {
 
     private String ingredients;
 
-    @Column(length = 4096)
+    @Column(length = 20480)
     private String description;
 
     @ManyToMany

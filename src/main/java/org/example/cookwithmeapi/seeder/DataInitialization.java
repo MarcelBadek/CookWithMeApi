@@ -92,17 +92,28 @@ public class DataInitialization implements CommandLineRunner {
             String name = RandomStringUtils.randomAlphabetic((int)(Math.random() * 20 + 5)).toLowerCase();
             StringBuilder ingredients = new StringBuilder();
             for (int j = 0; j < ((int)(Math.random() * 4) + 1); j++) {
+                if(j != 0) {
+                    ingredients.append(", ");
+                }
+
                 ingredients.append(RandomStringUtils.randomAlphabetic((int) (Math.random() * 10 + 5)).toLowerCase());
-                ingredients.append(", ");
             }
-            String description = RandomStringUtils.randomAlphabetic((int)(Math.random() * 500 + 300)).toLowerCase();
+            StringBuilder description = new StringBuilder();
+
+            for (int j = 0; j < ((int)(Math.random() * 3000) + 100); j++) {
+                if(j != 0) {
+                    description.append(" ");
+                }
+
+                description.append(RandomStringUtils.randomAlphabetic((int) (Math.random() * 10 + 5)).toLowerCase());
+            }
 
             Recipe recipe = recipeService.create(Recipe
                     .builder()
                     .name(name)
                     .preparationTime((int)(Math.random() * 120 + 1))
                     .ingredients(ingredients.toString())
-                    .description(description)
+                    .description(description.toString())
                     .categories(List.of(categories.get((int)(Math.random() * (categories.size() - 1)))))
                     .build(), clients.get((int)(Math.random() * (clients.size() - 1))));
         }
